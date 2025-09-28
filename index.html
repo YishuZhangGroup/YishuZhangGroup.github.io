@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yishu Zhang Research Group - Zhejiang University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #800020;
+            --accent-color: #0077cc;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Research Areas */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .research-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .research-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .member-info p {
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+
+        /* Publications */
+        .publications-list {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .publication-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .publication-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+
+        .publication-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .publication-meta {
+            display: flex;
+            gap: 15px;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .publication-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+
+        .publication-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* News Section */
+        .news-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--accent-color);
+            transform: translateX(-50%);
+        }
+
+        .news-item {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            position: relative;
+            width: calc(50% - 30px);
+        }
+
+        .news-item:nth-child(odd) {
+            margin-left: auto;
+        }
+
+        .news-item::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            top: 25px;
+        }
+
+        .news-item:nth-child(odd)::after {
+            left: -38px;
+        }
+
+        .news-item:nth-child(even)::after {
+            right: -38px;
+        }
+
+        .news-date {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-details {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-top: 5px;
+        }
+
+        .map {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .news-timeline::before {
+                left: 30px;
+            }
+            
+            .news-item {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+            
+            .news-item:nth-child(odd) {
+                margin-left: 60px;
+            }
+            
+            .news-item::after {
+                left: -38px;
+            }
+            
+            .news-item:nth-child(even)::after {
+                right: auto;
+                left: -38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://via.placeholder.com/60x60/0056b3/ffffff?text=YZ" alt="Yishu Zhang Group Logo">
+                <div>
+                    <h1>Yishu Zhang Research Group</h1>
+                    <p>Zhejiang University - College of Integrated Circuits</p>
+                </div>
+            </div>
+            
+            <nav>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="ko">한국어</button>
+                <button class="lang-btn" data-lang="ja">日本語</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 data-lang-key="hero-title">Advancing Integrated Circuit Technology</h2>
+            <p data-lang-key="hero-desc">We are dedicated to pioneering research in semiconductor devices, microelectronics, and integrated circuit design at Zhejiang University.</p>
+            <a href="#research" class="btn" data-lang-key="learn-more">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-key="about">About Our Research Group</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-lang-key="about-title">Welcome to the Yishu Zhang Research Group</h3>
+                    <p data-lang-key="about-desc1">Our research group at Zhejiang University's College of Integrated Circuits focuses on cutting-edge technologies in semiconductor devices, microelectronics, and integrated circuit design. Led by Professor Yishu Zhang, we aim to address fundamental challenges in electronics and contribute to technological advancements.</p>
+                    <p data-lang-key="about-desc2">Our work spans both theoretical and experimental approaches, with collaborations across disciplines and institutions worldwide. We are committed to training the next generation of researchers and innovators in the field of integrated circuits.</p>
+                    <a href="#contact" class="btn" data-lang-key="contact-us">Contact Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Research Lab">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas -->
+    <section id="research" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-key="research">Research Areas</h2>
+            </div>
+            <div class="research-grid">
+                <div class="research-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3 data-lang-key="research1-title">Semiconductor Devices</h3>
+                    <p data-lang-key="research1-desc">Investigation of novel semiconductor materials and device structures for next-generation electronics applications.</p>
+                </div>
+                <div class="research-card">
+                    <i class="fas fa-brain"></i>
+                    <h3 data-lang-key="research2-title">Neuromorphic Computing</h3>
+                    <p data-lang-key="research2-desc">Development of brain-inspired computing architectures using emerging electronic devices for AI applications.</p>
+                </div>
+                <div class="research-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3 data-lang-key="research3-title">Low-Power IC Design</h3>
+                    <p data-lang-key="research3-desc">Design and optimization of energy-efficient integrated circuits for IoT and mobile applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-key="team">Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Yishu Zhang">
+                    </div>
+                    <div class="member-info">
+                        <h3>Yishu Zhang, PhD</h3>
+                        <p data-lang-key="position1">Principal Investigator</p>
+                        <p data-lang-key="pi-desc">Professor Zhang leads the research group with expertise in semiconductor devices and integrated circuits.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Research Assistant">
+                    </div>
+                    <div class="member-info">
+                        <h3>Wei Chen</h3>
+                        <p data-lang-key="position2">Postdoctoral Researcher</p>
+                        <p data-lang-key="postdoc-desc">Dr. Chen focuses on neuromorphic computing and device characterization.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="PhD Student">
+                    </div>
+                    <div class="member-info">
+                        <h3>Min Li</h3>
+                        <p data-lang-key="position3">PhD Candidate</p>
+                        <p data-lang-key="phd-desc">Min's research involves low-power circuit design and optimization techniques.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-key="publications">Selected Publications</h2>
+            </div>
+            <div class="publications-list">
+                <div class="publication-item">
+                    <h3 data-lang-key="pub1-title">Advanced Semiconductor Device Architectures for Next-Generation Computing</h3>
+                    <div class="publication-meta">
+                        <span>Y. Zhang, W. Chen, M. Li</span>
+                        <span>Nature Electronics, 2023</span>
+                    </div>
+                    <p data-lang-key="pub1-desc">This paper presents novel device structures that enable more efficient computing paradigms.</p>
+                    <div class="publication-links">
+                        <a href="#" data-lang-key="pdf">PDF</a>
+                        <a href="#" data-lang-key="doi">DOI</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3 data-lang-key="pub2-title">Energy-Efficient Integrated Circuits for IoT Applications</h3>
+                    <div class="publication-meta">
+                        <span>M. Li, Y. Zhang</span>
+                        <span>IEEE Journal of Solid-State Circuits, 2022</span>
+                    </div>
+                    <p data-lang-key="pub2-desc">We demonstrate a new approach to ultra-low-power IC design targeting IoT devices.</p>
+                    <div class="publication-links">
+                        <a href="#" data-lang-key="pdf">PDF</a>
+                        <a href="#" data-lang-key="doi">DOI</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3 data-lang-key="pub3-title">Neuromorphic Computing with Memristive Devices</h3>
+                    <div class="publication-meta">
+                        <span>W. Chen, Y. Zhang, et al.</span>
+                        <span>Advanced Materials, 2021</span>
+                    </div>
+                    <p data-lang-key="pub3-desc">This work explores the use of memristive devices for brain-inspired computing applications.</p>
+                    <div class="publication-links">
+                        <a href="#" data-lang-key="pdf">PDF</a>
+                        <a href="#" data-lang-key="doi">DOI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-key="news">Latest News</h2>
+            </div>
+            <div class="news-timeline">
+                <div class="news-item">
+                    <div class="news-date" data-lang-key="news1-date">June 2023</div>
+                    <h3 data-lang-key="news1-title">New Research Grant Awarded</h3>
+                    <p data-lang-key="news1-desc">Our group has been awarded a significant research grant from the National Natural Science Foundation of China to advance our work on neuromorphic computing.</p>
+                </div>
+                <div class="news-item">
+                    <div class="news-date" data-lang-key="news2-date">April 2023</div>
+                    <h3 data-lang-key="news2-title">International Conference Presentation</h3>
+                    <p data-lang-key="news2-desc">Professor Zhang presented our latest findings at the International Electron Devices Meeting in San Francisco.</p>
+                </div>
+                <div class="news-item">
+                    <div class="news-date" data-lang-key="news3-date">February 2023</div>
+                    <h3 data-lang-key="news3-title">New Lab Facilities</h3>
+                    <p data-lang-key="news3-desc">We have expanded our laboratory facilities with state-of-the-art characterization equipment for semiconductor devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang-key="contact">Contact Us</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3 data-lang-key="address-title">Address</h3>
+                                <p data-lang-key="address">College of Integrated Circuits<br>Zhejiang University<br>Hangzhou, Zhejiang 310027, China</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3 data-lang-key="email-title">Email</h3>
+                                <p>yishu.zhang@zju.edu.cn</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3 data-lang-key="phone-title">Phone</h3>
+                                <p>+86-571-8795-XXXX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220097.542010657!2d120.04553330890623!3d30.274600887365237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x344c3a5155caf0cd%3A0x408a7df07c0bfbdd!2sZhejiang%20University!5e0!3m2!1sen!2sus!4v1689876543210!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Yishu Zhang Research Group</h3>
+                    <p data-lang-key="footer-desc">Advancing integrated circuit technology through innovative research and education.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h3 data-lang-key="quick-links">Quick Links</h3>
+                        <ul>
+                            <li><a href="#about" data-lang-key="about">About</a></li>
+                            <li><a href="#research" data-lang-key="research">Research</a></li>
+                            <li><a href="#publications" data-lang-key="publications">Publications</a></li>
+                            <li><a href="#contact" data-lang-key="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 data-lang-key="affiliations">Affiliations</h3>
+                        <ul>
+                            <li><a href="https://www.zju.edu.cn" target="_blank">Zhejiang University</a></li>
+                            <li><a href="https://ic.zju.edu.cn" target="_blank">College of Integrated Circuits</a></li>
+                            <li><a href="#" data-lang-key="research-partners">Research Partners</a></li>
+                            <li><a href="#" data-lang-key="collaborators">Collaborators</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 data-lang-key="connect">Connect</h3>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="#"><i class="fab fa-google-scholar"></i> Google Scholar</a></li>
+                            <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Yishu Zhang Research Group, Zhejiang University. <span data-lang-key="rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Language switching functionality
+        const languageData = {
+            en: {
+                // Hero Section
+                "hero-title": "Advancing Integrated Circuit Technology",
+                "hero-desc": "We are dedicated to pioneering research in semiconductor devices, microelectronics, and integrated circuit design at Zhejiang University.",
+                "learn-more": "Learn More",
+                
+                // Navigation
+                "about": "About",
+                "research": "Research",
+                "team": "Team",
+                "publications": "Publications",
+                "news": "News",
+                "contact": "Contact",
+                
+                // About Section
+                "about-title": "Welcome to the Yishu Zhang Research Group",
+                "about-desc1": "Our research group at Zhejiang University's College of Integrated Circuits focuses on cutting-edge technologies in semiconductor devices, microelectronics, and integrated circuit design. Led by Professor Yishu Zhang, we aim to address fundamental challenges in electronics and contribute to technological advancements.",
+                "about-desc2": "Our work spans both theoretical and experimental approaches, with collaborations across disciplines and institutions worldwide. We are committed to training the next generation of researchers and innovators in the field of integrated circuits.",
+                "contact-us": "Contact Us",
+                
+                // Research Areas
+                "research1-title": "Semiconductor Devices",
+                "research1-desc": "Investigation of novel semiconductor materials and device structures for next-generation electronics applications.",
+                "research2-title": "Neuromorphic Computing",
+                "research2-desc": "Development of brain-inspired computing architectures using emerging electronic devices for AI applications.",
+                "research3-title": "Low-Power IC Design",
+                "research3-desc": "Design and optimization of energy-efficient integrated circuits for IoT and mobile applications.",
+                
+                // Team Section
+                "position1": "Principal Investigator",
+                "pi-desc": "Professor Zhang leads the research group with expertise in semiconductor devices and integrated circuits.",
+                "position2": "Postdoctoral Researcher",
+                "postdoc-desc": "Dr. Chen focuses on neuromorphic computing and device characterization.",
+                "position3": "PhD Candidate",
+                "phd-desc": "Min's research involves low-power circuit design and optimization techniques.",
+                
+                // Publications
+                "pub1-title": "Advanced Semiconductor Device Architectures for Next-Generation Computing",
+                "pub1-desc": "This paper presents novel device structures that enable more efficient computing paradigms.",
+                "pub2-title": "Energy-Efficient Integrated Circuits for IoT Applications",
+                "pub2-desc": "We demonstrate a new approach to ultra-low-power IC design targeting IoT devices.",
+                "pub3-title": "Neuromorphic Computing with Memristive Devices",
+                "pub3-desc": "This work explores the use of memristive devices for brain-inspired computing applications.",
+                "pdf": "PDF",
+                "doi": "DOI",
+                
+                // News Section
+                "news1-date": "June 2023",
+                "news1-title": "New Research Grant Awarded",
+                "news1-desc": "Our group has been awarded a significant research grant from the National Natural Science Foundation of China to advance our work on neuromorphic computing.",
+                "news2-date": "April 2023",
+                "news2-title": "International Conference Presentation",
+                "news2-desc": "Professor Zhang presented our latest findings at the International Electron Devices Meeting in San Francisco.",
+                "news3-date": "February 2023",
+                "news3-title": "New Lab Facilities",
+                "news3-desc": "We have expanded our laboratory facilities with state-of-the-art characterization equipment for semiconductor devices.",
+                
+                // Contact Section
+                "address-title": "Address",
+                "address": "College of Integrated Circuits<br>Zhejiang University<br>Hangzhou, Zhejiang 310027, China",
+                "email-title": "Email",
+                "phone-title": "Phone",
+                
+                // Footer
+                "footer-desc": "Advancing integrated circuit technology through innovative research and education.",
+                "quick-links": "Quick Links",
+                "affiliations": "Affiliations",
+                "research-partners": "Research Partners",
+                "collaborators": "Collaborators",
+                "connect": "Connect",
+                "rights": "All rights reserved."
+            },
+            zh: {
+                // Hero Section
+                "hero-title": "推动集成电路技术发展",
+                "hero-desc": "我们致力于在浙江大学开展半导体器件、微电子和集成电路设计的前沿研究。",
+                "learn-more": "了解更多",
+                
+                // Navigation
+                "about": "关于我们",
+                "research": "研究方向",
+                "team": "研究团队",
+                "publications": "发表论文",
+                "news": "新闻动态",
+                "contact": "联系我们",
+                
+                // About Section
+                "about-title": "欢迎来到张逸舒研究组",
+                "about-desc1": "我们在浙江大学集成电路学院的研究组专注于半导体器件、微电子和集成电路设计的尖端技术。在张逸舒教授的带领下，我们致力于解决电子学领域的基本挑战，并为技术进步做出贡献。",
+                "about-desc2": "我们的工作涵盖理论和实验方法，与全球各学科和机构开展合作。我们致力于培养集成电路领域的下一代研究者和创新者。",
+                "contact-us": "联系我们",
+                
+                // Research Areas
+                "research1-title": "半导体器件",
+                "research1-desc": "研究用于下一代电子应用的新型半导体材料和器件结构。",
+                "research2-title": "神经形态计算",
+                "research2-desc": "利用新兴电子器件开发面向AI应用的脑启发计算架构。",
+                "research3-title": "低功耗IC设计",
+                "research3-desc": "为物联网和移动应用设计和优化高能效集成电路。",
+                
+                // Team Section
+                "position1": "首席研究员",
+                "pi-desc": "张教授领导研究组，在半导体器件和集成电路方面具有丰富经验。",
+                "position2": "博士后研究员",
+                "postdoc-desc": "陈博士专注于神经形态计算和器件表征。",
+                "position3": "博士候选人",
+                "phd-desc": "李敏的研究涉及低功耗电路设计和优化技术。",
+                
+                // Publications
+                "pub1-title": "面向下一代计算的先进半导体器件架构",
+                "pub1-desc": "本文提出了能够实现更高效计算范式的新型器件结构。",
+                "pub2-title": "面向物联网应用的能效集成电路",
+                "pub2-desc": "我们展示了一种针对物联网设备的超低功耗IC设计新方法。",
+                "pub3-title": "基于忆阻器件的神经形态计算",
+                "pub3-desc": "这项工作探索了忆阻器件在脑启发计算应用中的使用。",
+                "pdf": "PDF",
+                "doi": "DOI",
+                
+                // News Section
+                "news1-date": "2023年6月",
+                "news1-title": "获得新研究资助",
+                "news1-desc": "我们团队获得了国家自然科学基金的重要研究资助，以推进我们在神经形态计算方面的工作。",
+                "news2-date": "2023年4月",
+                "news2-title": "国际会议报告",
+                "news2-desc": "张教授在旧金山举行的国际电子器件会议上介绍了我们的最新发现。",
+                "news3-date": "2023年2月",
+                "news3-title": "新实验室设施",
+                "news3-desc": "我们扩大了实验室设施，配备了最先进的半导体器件表征设备。",
+                
+                // Contact Section
+                "address-title": "地址",
+                "address": "浙江大学集成电路学院<br>浙江省杭州市<br>310027",
+                "email-title": "邮箱",
+                "phone-title": "电话",
+                
+                // Footer
+                "footer-desc": "通过创新研究和教育推动集成电路技术的发展。",
+                "quick-links": "快速链接",
+                "affiliations": "隶属机构",
+                "research-partners": "研究伙伴",
+                "collaborators": "合作者",
+                "connect": "联系",
+                "rights": "版权所有。"
+            },
+            ko: {
+                // Hero Section
+                "hero-title": "집적 회로 기술 발전",
+                "hero-desc": "저희는 저장대학교에서 반도체 장치, 마이크로일렉트로닉스 및 집적 회로 설계에 관한 선도적인 연구에 전념하고 있습니다.",
+                "learn-more": "더 알아보기",
+                
+                // Navigation
+                "about": "소개",
+                "research": "연구 분야",
+                "team": "연구팀",
+                "publications": "발표 논문",
+                "news": "소식",
+                "contact": "연락처",
+                
+                // About Section
+                "about-title": "Yishu Zhang 연구 그룹에 오신 것을 환영합니다",
+                "about-desc1": "저장대학교 집적 회로 대학의 연구 그룹은 반도체 장치, 마이크로일렉트로닉스 및 집적 회로 설계의 최첨단 기술에 중점을 둡니다. Yishu Zhang 교수의 지도 아래, 우리는 전자 공학의 근본적인 과제를 해결하고 기술 발전에 기여하는 것을 목표로 합니다.",
+                "about-desc2": "저희 연구는 이론적 및 실험적 접근 방식을 모두 포괄하며, 전 세계 여러 학문 분야 및 기관과 협력하고 있습니다. 우리는 집적 회로 분야의 다음 세대 연구원과 혁신가를 양성하기 위해 최선을 다하고 있습니다.",
+                "contact-us": "연락하기",
+                
+                // Research Areas
+                "research1-title": "반도체 장치",
+                "research1-desc": "차세대 전자 응용을 위한 새로운 반도체 재료 및 장치 구조 연구.",
+                "research2-title": "뉴로모픽 컴퓨팅",
+                "research2-desc": "AI 응용을 위한 새로운 전자 장치를 사용한 뇌 영감 컴퓨팅 아키텍처 개발.",
+                "research3-title": "저전력 IC 설계",
+                "research3-desc": "IoT 및 모바일 응용을 위한 에너지 효율적인 집적 회로 설계 및 최적화.",
+                
+                // Team Section
+                "position1": "주요 연구원",
+                "pi-desc": "Zhang 교수는 반도체 장치 및 집적 회로 분야의 전문 지식으로 연구 그룹을 이끌고 있습니다.",
+                "position2": "박사후 연구원",
+                "postdoc-desc": "Chen 박사는 뉴로모픽 컴퓨팅 및 장치 특성 분석에 중점을 둡니다.",
+                "position3": "박사 과정",
+                "phd-desc": "Min의 연구에는 저전력 회로 설계 및 최적화 기술이 포함됩니다.",
+                
+                // Publications
+                "pub1-title": "차세대 컴퓨팅을 위한 고급 반도체 장치 아키텍처",
+                "pub1-desc": "이 논문은 더 효율적인 컴퓨팅 패러다임을 가능하게 하는 새로운 장치 구조를 제시합니다.",
+                "pub2-title": "IoT 응용을 위한 에너지 효율적인 집적 회로",
+                "pub2-desc": "IoT 장치를 대상으로 하는 초저전력 IC 설계에 대한 새로운 접근 방식을 보여줍니다.",
+                "pub3-title": "멤리스터 장치를 사용한 뉴로모픽 컴퓨팅",
+                "pub3-desc": "이 연구는 뇌 영감 컴퓨팅 응용을 위한 멤리스터 장치의 사용을 탐구합니다.",
+                "pdf": "PDF",
+                "doi": "DOI",
+                
+                // News Section
+                "news1-date": "2023년 6월",
+                "news1-title": "새로운 연구 기금 수여",
+                "news1-desc": "저희 그룹은 뉴로모픽 컴퓨팅 연구를 발전시키기 위해 중국 국가 자연 과학 기금에서 상당한 연구 기금을 받았습니다.",
+                "news2-date": "2023년 4월",
+                "news2-title": "국제 컨퍼런스 발표",
+                "news2-desc": "Zhang 교수는 샌프란시스코에서 열린 국제 전자 장치 회의에서 최신 연구 결과를 발표했습니다.",
+                "news3-date": "2023년 2월",
+                "news3-title": "새로운 실험실 시설",
+                "news3-desc": "반도체 장치 특성 분석을 위한 최첨단 장비로 실험실 시설을 확장했습니다.",
+                
+                // Contact Section
+                "address-title": "주소",
+                "address": "집적 회로 대학<br>저장대학교<br>항저우, 저장성 310027, 중국",
+                "email-title": "이메일",
+                "phone-title": "전화",
+                
+                // Footer
+                "footer-desc": "혁신적인 연구와 교육을 통해 집적 회로 기술을 발전시키고 있습니다.",
+                "quick-links": "빠른 링크",
+                "affiliations": "소속",
+                "research-partners": "연구 파트너",
+                "collaborators": "협력자",
+                "connect": "연결",
+                "rights": "모든 권리 보유."
+            },
+            ja: {
+                // Hero Section
+                "hero-title": "集積回路技術の進歩",
+                "hero-desc": "浙江大学で半導体デバイス、マイクロエレクトロニクス、集積回路設計の先駆的研究に専念しています。",
+                "learn-more": "詳細を見る",
+                
+                // Navigation
+                "about": "概要",
+                "research": "研究分野",
+                "team": "研究チーム",
+                "publications": "発表論文",
+                "news": "ニュース",
+                "contact": "お問い合わせ",
+                
+                // About Section
+                "about-title": "Yishu Zhang研究グループへようこそ",
+                "about-desc1": "浙江大学集積回路学院の研究グループは、半導体デバイス、マイクロエレクトロニクス、集積回路設計の先端技術に焦点を当てています。Yishu Zhang教授が率いる私たちは、エレクトロニクスの基本的な課題に取り組み、技術の進歩に貢献することを目指しています。",
+                "about-desc2": "私たちの研究は理論的および実験的アプローチの両方をカバーし、世界中の様々な分野や機関と協力しています。私たちは、集積回路分野の次世代の研究者と革新者を育成することに尽力しています。",
+                "contact-us": "お問い合わせ",
+                
+                // Research Areas
+                "research1-title": "半導体デバイス",
+                "research1-desc": "次世代エレクトロニクス応用のための新しい半導体材料およびデバイス構造の研究。",
+                "research2-title": "ニューロモーフィックコンピューティング",
+                "research2-desc": "AI応用のための新しい電子デバイスを使用した脳型コンピューティングアーキテクチャの開発。",
+                "research3-title": "低消費電力IC設計",
+                "research3-desc": "IoTおよびモバイルアプリケーション向けの高エネルギー効率集積回路の設計と最適化。",
+                
+                // Team Section
+                "position1": "主任研究者",
+                "pi-desc": "Zhang教授は、半導体デバイスおよび集積回路の専門知識で研究グループを率いています。",
+                "position2": "博士研究員",
+                "postdoc-desc": "Chen博士は、ニューロモーフィックコンピューティングとデバイス特性評価に焦点を当てています。",
+                "position3": "博士課程",
+                "phd-desc": "Minの研究には、低消費電力回路設計と最適化技術が含まれます。",
+                
+                // Publications
+                "pub1-title": "次世代コンピューティングのための先進的な半導体デバイスアーキテクチャ",
+                "pub1-desc": "本論文は、より効率的なコンピューティングパラダイムを可能にする新しいデバイス構造を提示します。",
+                "pub2-title": "IoTアプリケーションのための高エネルギー効率集積回路",
+                "pub2-desc": "IoTデバイスを対象とした超低消費電力IC設計への新しいアプローチを実証します。",
+                "pub3-title": "メムリスティブデバイスを用いたニューロモーフィックコンピューティング",
+                "pub3-desc": "この研究は、脳型コンピューティングアプリケーションのためのメムリスティブデバイスの使用を探求します。",
+                "pdf": "PDF",
+                "doi": "DOI",
+                
+                // News Section
+                "news1-date": "2023年6月",
+                "news1-title": "新研究助成金授与",
+                "news1-desc": "私たちのグループは、ニューロモーフィックコンピューティングの研究を進めるために、中国国家自然科学基金から重要な研究助成金を授与されました。",
+                "news2-date": "2023年4月",
+                "news2-title": "国際会議での発表",
+                "news2-desc": "Zhang教授は、サンフランシスコで開催された国際電子デバイス会議で最新の研究成果を発表しました。",
+                "news3-date": "2023年2月",
+                "news3-title": "新しい実験室施設",
+                "news3-desc": "半導体デバイスの特性評価のための最先端機器で実験室施設を拡張しました。",
+                
+                // Contact Section
+                "address-title": "住所",
+                "address": "集積回路学院<br>浙江大学<br>杭州市、浙江省310027、中国",
+                "email-title": "メール",
+                "phone-title": "電話",
+                
+                // Footer
+                "footer-desc": "革新的な研究と教育を通じて集積回路技術を進歩させています。",
+                "quick-links": "クイックリンク",
+                "affiliations": "所属",
+                "research-partners": "研究パートナー",
+                "collaborators": "協力者",
+                "connect": "接続",
+                "rights": "全著作権所有。"
+            }
+        };
+
+        // Language switching function
+        function switchLanguage(lang) {
+            // Update all elements with data-lang-key attribute
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (languageData[lang] && languageData[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = languageData[lang][key];
+                    } else {
+                        element.innerHTML = languageData[lang][key];
+                    }
+                }
+            });
+            
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Set up language switcher event listeners
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+                
+                // Store language preference
+                localStorage.setItem('preferred-language', lang);
+            });
+        });
+
+        // Check for saved language preference or use default (en)
+        const savedLang = localStorage.getItem('preferred-language') || 'en';
+        switchLanguage(savedLang);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
