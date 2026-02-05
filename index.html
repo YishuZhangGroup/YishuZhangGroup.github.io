@@ -1027,7 +1027,7 @@
             </div>
 
             <!-- 2025年会议 -->
-            <div class="year-section active" id="year-2025">
+            <div class="year-section active" id="conference-year-2025">
                 <div class="year-header d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
                     <h4 class="mb-0">2025 Conference</h4>
                 </div>
@@ -1091,7 +1091,7 @@
             </div>
 
             <!-- 2024年会议 -->
-            <div class="year-section" id="year-2024" style="display: none;">
+            <div class="year-section" id="conference-year-2024" style="display: none;">
                 <div class="year-header d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
                     <h4 class="mb-0">2024 Conference</h4>
                 </div>
@@ -1160,7 +1160,7 @@
             </div>
 
             <!-- 2023年会议 -->
-            <div class="year-section" id="year-2023" style="display: none;">
+            <div class="year-section" id="conference-year-2023" style="display: none;">
                 <div class="year-header d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
                     <h4 class="mb-0">2023 Conference</h4>
                 </div>
@@ -1517,5 +1517,68 @@
             });
         });
     </script>
+        // Publications年份切换功能
+    const pubYearTabs = document.querySelectorAll('#publications .year-tab');
+    const pubYearSections = document.querySelectorAll('#publications .year-section');
+    
+    if (pubYearTabs.length > 0) {
+        pubYearTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const year = this.getAttribute('data-year');
+                
+                // 更新标签状态
+                pubYearTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 显示对应年份的论文区块
+                pubYearSections.forEach(section => {
+                    if (section.id === `year-${year}`) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // 平滑滚动到Publications板块顶部
+                document.getElementById('publications').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    }
+    
+    // Conference部分的切换
+    const confYearTabs = document.querySelectorAll('#conference .year-tab');
+    const confYearSections = document.querySelectorAll('#conference .year-section');
+    
+    if (confYearTabs.length > 0) {
+        confYearTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const year = this.getAttribute('data-year');
+                
+                // 更新标签状态
+                confYearTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 显示对应年份的会议区块
+                confYearSections.forEach(section => {
+                    if (section.id === `conference-year-${year}`) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // 平滑滚动到Conference板块顶部
+                document.getElementById('conference').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    }
 </body>
 </html>
