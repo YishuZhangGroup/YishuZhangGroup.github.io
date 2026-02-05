@@ -1117,7 +1117,7 @@
                         <div class="conference-venue">2024 International Conference on Solid State Devices and Materials (SSDM)</div>
                     </div>
                     <div class="conference-item">
-                        <div class="conference-title"[10] An Ultra-low Power SNN Co-processor with Reconfigurable Computing-in-Memory Cell Array based on Differential-pair SRAM and Memristive Memory</div>
+                        <div class="conference-title">[10] An Ultra-low Power SNN Co-processor with Reconfigurable Computing-in-Memory Cell Array based on Differential-pair SRAM and Memristive Memory</div>
                         <div class="conference-authors">Yaolei Guo, Liangyao Deng, Jinxu Liu, Chenhao Tang, Yue Cheng, Wenrui Chen, Ping Ouyang, Yishu Zhang, Yongpeng Cheng, Yitao Ma</div>
                         <div class="conference-venue">2024 International Conference on Solid State Devices and Materials (SSDM)</div>
                     </div>
@@ -1517,40 +1517,60 @@
             });
         });
 
-        // Conference年份切换功能（新增）
+        // Conference年份切换功能（增强调试版）
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM加载完成，开始设置Conference年份切换...');
+            console.log('=== Conference切换功能初始化 ===');
             
-            const confTabs = document.querySelectorAll('.conf-year-tab');
-            const confSections = document.querySelectorAll('.conf-year-section');
+            // 使用更精确的选择器
+            const confTabs = document.querySelectorAll('#conference .conf-year-tab');
+            const confSections = document.querySelectorAll('#conference .conf-year-section');
             
-            console.log('找到Conference年份按钮数量:', confTabs.length);
-            console.log('找到Conference年份区块数量:', confSections.length);
+            console.log('找到Conference年份按钮:', confTabs.length);
+            console.log('找到Conference年份区块:', confSections.length);
+            
+            // 打印所有找到的区块ID
+            confSections.forEach((section, index) => {
+                console.log(`Conference区块 ${index+1}: ID="${section.id}", 当前display="${section.style.display}"`);
+            });
             
             confTabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
                     const year = this.getAttribute('data-year');
-                    console.log('点击了Conference年份:', year);
+                    console.log(`点击了Conference年份: ${year}`);
                     
                     // 更新标签状态
                     confTabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     
                     // 切换显示对应年份的区块
+                    const targetId = `conf-year-${year}`;
+                    console.log(`目标ID: ${targetId}`);
+                    
+                    let foundTarget = false;
                     confSections.forEach(section => {
-                        console.log('检查区块:', section.id, '期望:', 'conf-year-' + year);
-                        if (section.id === 'conf-year-' + year) {
+                        if (section.id === targetId) {
                             section.style.display = 'block';
-                            console.log('显示区块:', section.id);
+                            console.log(`显示区块: ${section.id}, 内容长度: ${section.innerHTML.length} 字符`);
+                            foundTarget = true;
                         } else {
                             section.style.display = 'none';
                         }
                     });
+                    
+                    if (!foundTarget) {
+                        console.error(`未找到ID为 ${targetId} 的区块!`);
+                        
+                        // 尝试直接通过ID查找
+                        const directElement = document.getElementById(targetId);
+                        if (directElement) {
+                            console.log(`但通过document.getElementById找到了: ${directElement.id}`);
+                        }
+                    }
                 });
             });
             
-            console.log('Conference年份切换功能已设置');
+            console.log('=== Conference切换功能初始化完成 ===');
         });
     </script>
 </body>
