@@ -1020,14 +1020,14 @@
             <!-- 年份标签导航栏 -->
             <div class="year-tabs mb-4">
                 <div class="d-flex flex-wrap justify-content-center border-bottom pb-2">
-                    <button class="year-tab btn btn-outline-primary mx-2 my-1 active" data-year="2025">2025</button>
-                    <button class="year-tab btn btn-outline-primary mx-2 my-1" data-year="2024">2024</button>
-                    <button class="year-tab btn btn-outline-primary mx-2 my-1" data-year="2023">2023</button>
+                    <button class="conf-year-tab btn btn-outline-primary mx-2 my-1 active" data-year="2025">2025</button>
+                    <button class="conf-year-tab btn btn-outline-primary mx-2 my-1" data-year="2024">2024</button>
+                    <button class="conf-year-tab btn btn-outline-primary mx-2 my-1" data-year="2023">2023</button>
                 </div>
             </div>
 
             <!-- 2025年会议 -->
-            <div class="year-section active" id="conference-year-2025">
+            <div class="conf-year-section active" id="conf-year-2025">
                 <div class="year-header d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
                     <h4 class="mb-0">2025 Conference</h4>
                 </div>
@@ -1091,7 +1091,7 @@
             </div>
 
             <!-- 2024年会议 -->
-            <div class="year-section" id="conference-year-2024" style="display: none;">
+            <div class="conf-year-section" id="conf-year-2024" style="display: none;">
                 <div class="year-header d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
                     <h4 class="mb-0">2024 Conference</h4>
                 </div>
@@ -1160,7 +1160,7 @@
             </div>
 
             <!-- 2023年会议 -->
-            <div class="year-section" id="conference-year-2023" style="display: none;">
+            <div class="conf-year-section" id="conf-year-2023" style="display: none;">
                 <div class="year-header d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
                     <h4 class="mb-0">2023 Conference</h4>
                 </div>
@@ -1517,69 +1517,41 @@
             });
         });
 
-        // Publications年份切换功能
-        const pubYearTabs = document.querySelectorAll('#publications .year-tab');
-        const pubYearSections = document.querySelectorAll('#publications .year-section');
-        
-        if (pubYearTabs.length > 0) {
-            pubYearTabs.forEach(tab => {
+        // Conference年份切换功能（新增）
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM加载完成，开始设置Conference年份切换...');
+            
+            const confTabs = document.querySelectorAll('.conf-year-tab');
+            const confSections = document.querySelectorAll('.conf-year-section');
+            
+            console.log('找到Conference年份按钮数量:', confTabs.length);
+            console.log('找到Conference年份区块数量:', confSections.length);
+            
+            confTabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
                     const year = this.getAttribute('data-year');
+                    console.log('点击了Conference年份:', year);
                     
                     // 更新标签状态
-                    pubYearTabs.forEach(t => t.classList.remove('active'));
+                    confTabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // 显示对应年份的论文区块
-                    pubYearSections.forEach(section => {
-                        if (section.id === `year-${year}`) {
+                    // 切换显示对应年份的区块
+                    confSections.forEach(section => {
+                        console.log('检查区块:', section.id, '期望:', 'conf-year-' + year);
+                        if (section.id === 'conf-year-' + year) {
                             section.style.display = 'block';
+                            console.log('显示区块:', section.id);
                         } else {
                             section.style.display = 'none';
                         }
                     });
-                    
-                    // 平滑滚动到Publications板块顶部
-                    document.getElementById('publications').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
                 });
             });
-        }
-        
-        // Conference部分的切换
-        const confYearTabs = document.querySelectorAll('#conference .year-tab');
-        const confYearSections = document.querySelectorAll('#conference .year-section');
-        
-        if (confYearTabs.length > 0) {
-            confYearTabs.forEach(tab => {
-                tab.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const year = this.getAttribute('data-year');
-                    
-                    // 更新标签状态
-                    confYearTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 显示对应年份的会议区块
-                    confYearSections.forEach(section => {
-                        if (section.id === `conference-year-${year}`) {
-                            section.style.display = 'block';
-                        } else {
-                            section.style.display = 'none';
-                        }
-                    });
-                    
-                    // 平滑滚动到Conference板块顶部
-                    document.getElementById('conference').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
-            });
-        }
+            
+            console.log('Conference年份切换功能已设置');
+        });
     </script>
 </body>
 </html>
